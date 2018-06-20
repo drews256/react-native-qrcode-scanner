@@ -20,8 +20,14 @@ import { RNCamera as Camera } from 'react-native-camera';
 
 const PERMISSION_AUTHORIZED = 'authorized';
 const CAMERA_PERMISSION = 'camera';
+const FlashMode = Camera.Constants.FlashMode;
+const FLASH_MODES = [FlashMode.torch, FlashMode.on, FlashMode.off, FlashMode.auto];
 
 export default class QRCodeScanner extends Component {
+  static Constants = {
+	  FlashMode: FlashMode
+  };
+
   static propTypes = {
     onRead: PropTypes.func.isRequired,
     vibrate: PropTypes.bool,
@@ -43,6 +49,7 @@ export default class QRCodeScanner extends Component {
     permissionDialogMessage: PropTypes.string,
     checkAndroid6Permissions: PropTypes.bool,
     cameraProps: PropTypes.object,
+    flashMode: PropTypes.oneOf(FLASH_MODES),
   };
 
   static defaultProps = {
@@ -93,6 +100,7 @@ export default class QRCodeScanner extends Component {
     permissionDialogMessage: 'Need camera permission',
     checkAndroid6Permissions: false,
     cameraProps: {},
+    flashMode: FlashMode.auto,
   };
 
   constructor(props) {
@@ -103,6 +111,7 @@ export default class QRCodeScanner extends Component {
       isAuthorized: false,
       isAuthorizationChecked: false,
       disableVibrationByUser: false,
+      flashMode: props.flashMode,
     };
 
     this._handleBarCodeRead = this._handleBarCodeRead.bind(this);
@@ -225,6 +234,7 @@ export default class QRCodeScanner extends Component {
               onBarCodeRead={this._handleBarCodeRead.bind(this)}
               type={this.props.cameraType}
               {...this.props.cameraProps}
+              flashMode={this.state.flashMode}
             >
               {this._renderCameraMarker()}
             </Camera>
@@ -237,6 +247,7 @@ export default class QRCodeScanner extends Component {
           style={[styles.camera, this.props.cameraStyle]}
           onBarCodeRead={this._handleBarCodeRead.bind(this)}
           {...this.props.cameraProps}
+          flashMode={this.state.flashMode}
         >
           {this._renderCameraMarker()}
         </Camera>
@@ -302,3 +313,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
+
+export const Constants = QRCodeScanner.Constants;
