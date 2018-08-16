@@ -20,8 +20,10 @@ import { RNCamera as Camera } from 'react-native-camera';
 
 const PERMISSION_AUTHORIZED = 'authorized';
 const CAMERA_PERMISSION = 'camera';
-const FlashMode = Camera.Constants.FlashMode;
-const FLASH_MODES = [FlashMode.torch, FlashMode.on, FlashMode.off, FlashMode.auto];
+const CAMERA_FLASH_MODE = Camera.Constants.FlashMode;
+const CAMERA_FLASH_MODES = [
+  CAMERA_FLASH_MODE.torch, CAMERA_FLASH_MODE.on, CAMERA_FLASH_MODE.off,
+  CAMERA_FLASH_MODE.auto];
 
 export default class QRCodeScanner extends Component {
   static Constants = {
@@ -49,7 +51,7 @@ export default class QRCodeScanner extends Component {
     permissionDialogMessage: PropTypes.string,
     checkAndroid6Permissions: PropTypes.bool,
     cameraProps: PropTypes.object,
-    flashMode: PropTypes.oneOf(FLASH_MODES),
+    flashMode: PropTypes.oneOf(CAMERA_FLASH_MODES),
   };
 
   static defaultProps = {
@@ -314,4 +316,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Constants = QRCodeScanner.Constants;
