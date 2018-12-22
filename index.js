@@ -26,10 +26,6 @@ const CAMERA_FLASH_MODES = [
   CAMERA_FLASH_MODE.auto];
 
 export default class QRCodeScanner extends Component {
-  static Constants = {
-	  FlashMode: CAMERA_FLASH_MODE
-  };
-
   static propTypes = {
     onRead: PropTypes.func.isRequired,
     vibrate: PropTypes.bool,
