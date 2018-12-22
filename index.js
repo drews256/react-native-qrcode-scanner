@@ -98,7 +98,7 @@ export default class QRCodeScanner extends Component {
     permissionDialogMessage: 'Need camera permission',
     checkAndroid6Permissions: false,
     cameraProps: {},
-    flashMode: FlashMode.auto,
+    flashMode: CAMERA_FLASH_MODE.auto,
   };
 
   constructor(props) {
