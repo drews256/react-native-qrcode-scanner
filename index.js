@@ -26,10 +26,6 @@ const CAMERA_FLASH_MODES = [
   CAMERA_FLASH_MODE.auto];
 
 export default class QRCodeScanner extends Component {
-  static Constants = {
-	  FlashMode: FlashMode
-  };
-
   static propTypes = {
     onRead: PropTypes.func.isRequired,
     vibrate: PropTypes.bool,
@@ -102,7 +98,7 @@ export default class QRCodeScanner extends Component {
     permissionDialogMessage: 'Need camera permission',
     checkAndroid6Permissions: false,
     cameraProps: {},
-    flashMode: FlashMode.auto,
+    flashMode: CAMERA_FLASH_MODE.auto,
   };
 
   constructor(props) {
